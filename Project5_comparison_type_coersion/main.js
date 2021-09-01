@@ -45,3 +45,20 @@ function eq_test4(){
     document.getElementById("Test").innerHTML = boolt;
 }
 
+function and_test(){
+    var andt =(20>5 && 10 > 1);  // test if both statements are true and will display true or false
+    document.getElementById("Test").innerHTML = andt;
+}
+function and_test2(){
+    var andt = (10<5 && 10>1);  // test if both statements are true and will display true or false
+    document.getElementById("Test").innerHTML= andt;
+}
+function or_test(){
+    var ort = (10 > 5 || 10 > 1); // test if either statement are true and will display true or false
+    document.getElementById("Test").innerHTML = ort;
+}
+function or_test2(){
+    var ort = (5 > 10 || 1 > 10);  // test if either statement are true and will display true or false
+    document.getElementById("Test").innerHTML = ort;
+}
+

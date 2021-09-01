@@ -61,4 +61,10 @@ function or_test2(){
     var ort = (5 > 10 || 1 > 10);  // test if either statement are true and will display true or false
     document.getElementById("Test").innerHTML = ort;
 }
+function not_test(){
+    document.getElementById("Test").innerHTML = !(10 > 1);  //test weather or not statment is rue and will display true or false
+}
+function not_test2(){
+    document.getElementById("Test").innerHTML= !(1 > 2);    //test weather or not statment is rue and will display true or false
+}
 

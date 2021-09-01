@@ -1,3 +1,6 @@
+function type_test(){   //dispalys the data type of the data in the code
+    document.getElementById("Test").innerHTML = (typeof '20');
+}
 function nan_test(){
     document.getElementById("Test").innerHTML = 0/0;  // tests and display if NAN
 }

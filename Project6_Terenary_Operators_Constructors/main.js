@@ -31,3 +31,13 @@ function new_test(){
     "Paul drives a " + Paul.Vehical_Color + "-colored " + Paul.Vehical_Model + " manufactured in "
     + Paul.Vehical_Year;            // display keywords to create a sentence to describe what (Paul) drives
 }
+
+function count_function(){      // initialized count_function
+    document.getElementById("Counting").innerHTML = Count(); // display Count()
+    function Count(){       // initialized Count() function
+        var Starting_Point= 9;          // created starting point for count
+        function Plus_one (){Starting_Point += 1;}      // intialized Plus_ one that adds 1 to starting point
+        Plus_one();         //creates Plus_one
+        return Starting_Point;      //Shows result of starting point
+    }
+}

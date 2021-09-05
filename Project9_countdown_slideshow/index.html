@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../Project9_countdown_slideshow/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Project9_countdown_slideshow/css_file.css">
+</head>
+<body>
+    <!--CREATIING A JAVSCRIPT PROGRAM-->
+    <div>
+        <p>How many seconds would you like to set your alarm for?</p>
+        <input id="seconds" value="" />
+        <button id="countdown()">Click here</button>
+        <p id="timer"></p>
+    </div>
+    <!--SLIDESHOW CONTAINER-->
+    <div class="SS-container">
+        <!--IMAGE 1-->
+        <div class= "mySlides fade">
+            <div class="numTxt">1/3</div>
+            <img src="../Project9_countdown_slideshow/Pictures/badf54fe0702cf18ac105f957dca007e.jpeg" style="width: 100%;">
+            <div class="txt">Caption one</div>
+        </div>
+        <!--IMAGE 2-->
+        <div class= "mySlides fade">
+            <div class="numTxt">2/3</div>
+            <img src="../Project9_countdown_slideshow/Pictures/f15a3429d52032b37fa6c976e3eaf72b.jpeg" style="width: 100%;">
+            <div class="txt">Caption two</div>
+        </div>
+        <!--IMAGE 3-->
+        <div class= "mySlides fade">
+            <div class="numTxt">3/3</div>
+            <img src="../Project9_countdown_slideshow/Pictures/nass on Twitter.jpeg" style="width: 100%;">
+            <div class="txt">Caption three</div>
+        </div>
+        <!-- NEXT & PREVIOUS BUTTONS-->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <!--DOTS& CIRCLES-->
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+</body>
+</html>

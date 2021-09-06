@@ -1,14 +1,15 @@
 // CREATING A JAVASCRIPT PROGRAM
-function countdown(){   
-    var seconds = document.getElementById("seconds").value; //Get the input user types in
-    function tick(){    // function that ticks down the timer and then displays 'Time's up' when it's over
-        seconds = seconds - 1;
+function countdown(){
+    var seconds = document.getElementById("seconds").value;
+
+    function tick(){
+        seconds = seconds - 1;  //makes it so that seconds is constatly getting subtracted by one (counting down)
         timer.innerHTML = seconds;
         var time = setTimeout(tick, 1000);
-        if(seconds == -1){
-            alert("Time's up");
+        if(seconds == -1){      //displays when time is done (when seconds reaches -1)
+            alert("Time's up!");
             clearTimeout(time);
-            timer.innerHTML= "";
+            timer.innerHTML ="";
         }
     }
     tick();

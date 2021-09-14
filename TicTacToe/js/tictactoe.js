@@ -18,7 +18,7 @@ function placeXOrO(squareNumber){
             //Active player may only be 'X' or '0' so, if not 'X' it must be 'O'
         } else{
             //if activePlayer is equal to 'O', the o.png is placed in html
-            select.style.backgroundImage='url(./image/o.png)';
+            select.style.backgroundImage='url(./images/o.png)';
         }
         //squareNumber and activePlayer are concatenated togather and added to array.
         selectedSquares.push(squareNumber+activePlayer);
@@ -36,10 +36,10 @@ function placeXOrO(squareNumber){
         audio('./media/place.mp3');
         //This condition checks to see if it is computers turn.
         if(activePlayer == 'O'){
-            //This function disables clicking for computer choice.
+            //This function disables clicking for computesr choice.
             disableClick();
             // This function waits 1 second before computer places image and enables click
-            setTimeout(function(){computerTurn();}, 1000)
+            setTimeout(function () {computersTurn();}, 1000)
         }
         //returning true is needed for our computersTurn() function to work
         return true;
@@ -112,14 +112,119 @@ function checkWinConditions(){
 
     // This function checks if an array includes 3 strings. It is used to check for 
     //each win condition. 
-    function arrayIncludes (squareA, squares, squarec) {
+    function arrayIncludes (squareA, squareB, squarec) {
         // These 3 variables will be used to check for 3 in a row. 
         const a = selectedSquares.includes (squareA) 
         const b = selectedSquares.includes (squareB) 
-        const c = selectedSquares.includes (squarec) 
+        const c = selectedSquares.includes (squarec)
         // If the 3 variables we pass are all included in our array true is 
         //returned and our else if condition executes the drawWinLine function. 
         if (a === true && b === true && c === true) { return true }
     }
+}
+
+// This functionmakes our body element temporarily unclickable.
+function disableClick(){
+    //This makes our body unclickable
+    body.style.pointerEvents = 'none';
+    //This makes our body clickable again after 1 seconds
+    setTimeout(function() {body.style.pointerEvents = 'auto';}, 1000);
+}
+
+//This function takes a string parameter of the path you set earlier for
+//placement sound ('./media/place.mp3')
+function audio(audioURL){
+    //we create a new audio object and we pass the path as a parameter
+    let audio = new Audio(audioURL);
+    //Play method plays our audio sound
+    audio.play();
+}
+
+//This function utilizes html canvas to draw win lines
+function drawWinLine(coordX1, coordY1, coordX2, coordY2){
+    //This line accesses our html canvas element
+    const canvas = document.getElementById('win-lines')
+    //This line gives us access to methods and properties to use on canvas.
+    const c = canvas.getContext('2d');
+    //This line indicates were the start of a lines x axis is
+    let x1 = coordX1,
+        //this line indicates where the start of a lines y axis is
+        y1 = coordY1,
+        //this line indicates where the end of lines x axis is
+        x2 = coordX2;
+        //this line indicates where the end of a lines x axis is
+        y2 = coordY2;
+        //THis varaable stores tempoary x axisdate we update in our animation loop
+        x = x1,
+        //This variable stores tempoary y axis data we update in our animation loop
+        y = y1;
+    
+    //This function interacts with the canvas
+    function animateLineDrawing(){
+        //This variable creates a loop
+        const animationLoop = requestAnimationFrame(animateLineDrawing);
+        //This method clears content from last loop iteration
+        c.clearRect(0, 0, 608, 608)
+        //This metod starts a new path
+        c.beginPath();
+        //Thismethod moves usto a starting point for our line
+        c.moveTo(x1, y1)
+        //This method indicates the end point in our line
+        c.lineTo(x,y)
+        //This method sets the width of our line
+        c.lineWidth = 10;
+        //This method sets the color of our line
+        c.strokeStyle = 'rgba(70,255,33,.8)';
+        //This method draws everything we laid out above
+        c.stroke();
+        //this contain check if we've reached the endpoint
+        if(x1 <= x2 && y1 <= y2){
+            //This condition adds 10 to the previous end x point
+            if(x< x2){x+= 10;}
+            //This condition adds 10 to the pervious end y point
+            if(y<y2){y+=10;}
+            //this condition cancels out animation loop
+            //if we've reach the end points
+            if(x>=x2 && y>=y2){cancelAnimationFrame(animationLoop);}
+        }
+        //This conditin is similar to the one above.
+        //This is necessary for the 6,4,2 win condition
+        if(x1 <=x2 && y1>=y2){
+            if(x<x2){x+=10;}
+            if(y>y2){y-=10;}
+            if(x>=x2 && y<= y2){cancelAnimationFrame(animationLoop);}
+        }
+    }
+
+    //This function clears our canvas after our win line is drawn
+    function clear(){
+        //This line starts our animation loop
+        const animationLoop = requestAnimationFrame(clear);
+        //This line clear our canvas
+        c.clearRect(0, 0, 608, 608);
+        //This line stops our animation loop
+        cancelAnimationFrame(animationLoop);
+    }
+    //This line disallows clicking while teh win sound is playing
+    disableClick();
+    //This line plays the win sounds
+    audio('./media/winGame.mp3');
+    //This line calls our main animation loop
+    animateLineDrawing();
+    //This line waits 1 second. Then, clears canvas, resets game, and allows clicking again.
+    setTimeout(function(){clear(); resetGame();}, 1000);
+    
+}
+//This function resets thegame in the event of a tie or a win
+function resetGame(){
+    //This for loop iterates through each html square element
+    for( let i =0; i<9; i++){
+        //This variable gets the html element of i
+        let square = document.getElementById(String(i))
+        //This removes our elements backgrouundImage
+        square.style.backgroundImage= ''
+    }
+    //Thisresets our arrayso it is empty and we can start over.
+    selectedSquares = [];
 }
 

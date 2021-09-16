@@ -9,7 +9,7 @@
 </head>
 <script>
     $(document).ready(function () {
-        $("html").append(
+        $("html").append( //targets an HTML tag to edit it using appened
             "<body>\
                 <div id='container'>\
                     <div id='inner'>\
@@ -21,9 +21,9 @@
                 </div>\
             </body>"
         );
-        $("#2").css({"color":"red"});
+        $("#2").css({"color":"red"}); //targets id #2 to change it's color to red
         $("#3").click(function(){
-            $('h1').hide().fade();
+            $('h1').hide().fade(); // function that hides h1 if you click id #3 
         });
     })
 </script>
